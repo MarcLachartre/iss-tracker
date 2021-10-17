@@ -1,0 +1,21 @@
+
+@import "../../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css";
+@import "../../node_modules/@fortawesome/fontawesome-free/css/solid.css";
+
+@import "./components/button.css";
+@import "./components/iss-icon.css";
+@import "./components/alert-box.css";
+@import "./components/map.css";
+
+html, body {
+    margin: 0px;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+
+
+
+
+
