@@ -9,7 +9,7 @@ export default class IssPositionLoop {
   init() { // we want our app to be able to track the ISS for two minutes with a refresh time of 1s. In other words, every second for 2minutes, the app will place the ISS on the map. After 2 minutes a message will ask if the user is stil on the page.
     const design = new Design();
     const device = new Device();
-    const events = [[document, "keyup", "enter"], [document, "keyup", "space"], [document.querySelector(".surface-map").querySelector(".button"), "click", "click"], [window, "focus", "focus"]]; //Events on which the app sarts tracking the iss.
+    const events = [[document, "keyup"], [document.querySelector(".surface-map").querySelector(".button"), "click"], [window, "focus"]]; //Events on which the app sarts tracking the iss.
 
     design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Press your space bar or click the "Spot The ISS" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.fetchLoop.bind(this), [0, design, events]);
 
@@ -79,7 +79,6 @@ export default class IssPositionLoop {
         this.design.showIss();
 
         const restartLoopHandler = (e) => {
-          console.log(e)
           if (e.code === "Space" || e.code === "Enter" || e.type === "click" || e.type === "focus") { 
             design.spotISS();
             timer = 0; 

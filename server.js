@@ -6,10 +6,6 @@ const app = express();
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
 
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + '/dist/index.html')
-// })
-
 //////////////// Images load ////////////////
 
 app.get('/world-map.jpeg', (req, res) => {
@@ -30,16 +26,17 @@ app.get('/phone-rotation.png', (req, res) => {
 app.get('/iss-social-media-image.jpg', (req, res) => {
   res.sendFile(__dirname + '/src/images/iss-social-media-image.jpg')
 })
+
 app.get('/favicon-iss-16x16.png', (req, res) => {
   res.sendFile(__dirname + '/src/images/favicon-iss-16x16.png')
 })
 app.get('/favicon-iss-32x32.png', (req, res) => {
   res.sendFile(__dirname + '/src/images/favicon-iss-32x32.png')
 })
-app.get('/iss-favicon-android-chrome-192x192.png', (req, res) => {
+app.get('/favicon-iss-android-chrome-192x192.png', (req, res) => {
   res.sendFile(__dirname + '/src/images/iss-favicon-android-chrome-192x192.png')
 })
-app.get('//favicon-iss-android-chrome-512x512.png', (req, res) => {
+app.get('/favicon-iss-android-chrome-512x512.png', (req, res) => {
   res.sendFile(__dirname + '/src/images/favicon-iss-android-chrome-512x512.png')
 })
 app.get('/favicon-iss-apple-touch-icon.png', (req, res) => {
