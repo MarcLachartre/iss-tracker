@@ -1,4 +1,6 @@
+console.log("bite");
 const express = require('express');
+console.log("chatte")
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 

@@ -1,1 +1,1 @@
-web: node server.js
+web: build node server.js
