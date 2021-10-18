@@ -1,1 +1,1 @@
-web: node ./server.js
+web: nnode server.js
