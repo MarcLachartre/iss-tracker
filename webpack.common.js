@@ -28,8 +28,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(sass|less|css)$/,
-        use: [   'css-loader',MiniCssExtractPlugin.loader,'style-loader'],
+        test: /\.(css)$/,
+        use: ['css-loader','style-loader', MiniCssExtractPlugin.loader],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
