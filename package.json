@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
-    "start": "run build node server.js",
+    "start": "npm run build node server.js",
     "server": "node server.js",
     "build": "webpack --config webpack.prod.js"
   },
