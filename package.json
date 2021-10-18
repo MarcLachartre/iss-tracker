@@ -17,9 +17,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "-": "^0.0.1",
     "@fortawesome/fontawesome-free": "^5.15.4",
+    "g": "^2.0.1",
     "lodash": "^4.17.21",
-    "mobile-detect": "^1.4.5"
+    "mobile-detect": "^1.4.5",
+    "n": "^7.5.0"
   },
   "devDependencies": {
     "css-loader": "^6.4.0",
