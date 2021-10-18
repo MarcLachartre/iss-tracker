@@ -29,7 +29,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader', MiniCssExtractPlugin.loader],
+        use: [MiniCssExtractPlugin.loader,'css-loader', 'style-loader'  ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
