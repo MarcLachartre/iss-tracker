@@ -17,13 +17,6 @@ module.exports = {
     }),
   ],
 
-  output: {
-      filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist'),
-      clean: true,
-      publicPath: '/',
-  },
-
   module: {
     rules: [
       {
@@ -36,11 +29,20 @@ module.exports = {
       },
     ],
   },
-  optimization: {
-    minimizer: [
-      // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
-      // `...`,
-      new CssMinimizerPlugin(),
-    ],
-  },
+
+
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
+    publicPath: '/',
+},
+
+//   optimization: {
+//     // minimizer: [
+//     //   // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+//     //   // `...`,
+//     //   new CssMinimizerPlugin(),
+//     // ],
+//   },
 };
