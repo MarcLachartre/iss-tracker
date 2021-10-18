@@ -11,8 +11,8 @@
     "watch": "webpack --watch",
     "start": "node server.js",
     "server": "node server.js",
-    "heroku-postbuild": "webpack -p",
-    "build": "webpack --config webpack.prod.js"
+
+    "heroku-postbuild": "webpack --config webpack.prod.js"
   },
   "keywords": [],
   "author": "",
