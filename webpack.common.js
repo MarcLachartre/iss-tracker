@@ -29,7 +29,7 @@ module.exports = {
     rules: [
       {
         test: /\.(sass|less|css)$/,
-        use: [  'style-loader'],
+        use: [   'css-loader',MiniCssExtractPlugin.loader,'style-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
