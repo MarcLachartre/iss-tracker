@@ -1,4 +1,4 @@
-import "../css/index.css";
+// import "../css/index.css";
 
 import Design from "./design.js";
 import IssPositionLoop from "./iss-position-loop.js";
