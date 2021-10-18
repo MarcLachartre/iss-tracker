@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 // importing a new type of asset (.csv, .json etc...) requires configuration, cf https://webpack.js.org/guides/asset-management/
@@ -15,9 +15,6 @@ module.exports = {
       title: 'ISS Tracker',
       template: './src/html/index.html'
     }),
-    new MiniCssExtractPlugin(
-        {filename: "[name].css",}
-    )
   ],
 
   output: {
@@ -31,7 +28,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader,'css-loader', 'style-loader'],
+        use: ['css-loader', 'style-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
