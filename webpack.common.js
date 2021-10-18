@@ -15,7 +15,7 @@ module.exports = {
       title: 'ISS Tracker',
       template: './src/html/index.html'
     }),
-    // new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin()
   ],
 
   output: {
@@ -29,7 +29,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: ['css-loader', 'style-loader'],
+        use: [MiniCssExtractPlugin.loader,'css-loader', 'style-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
