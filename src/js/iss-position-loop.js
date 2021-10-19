@@ -87,7 +87,7 @@ export default class IssPositionLoop {
 
         if (document.querySelector(".container").hasAttribute("listeners-added") === false) {
           document.querySelector(".container").setAttribute("listeners-added", true);
-          
+
           events.forEach(event => {
             event[0].addEventListener(event[1], (e) => { restartLoopHandler(e) }, false) 
           })
