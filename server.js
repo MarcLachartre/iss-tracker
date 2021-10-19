@@ -1,11 +1,9 @@
-console.log("bite");
 const express = require('express');
-console.log("chatte")
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 const app = express();
-const config = require('./webpack.dev.js');
+const config = require('./webpack.prod.js');
 const compiler = webpack(config);
 
 //////////////// Images load ////////////////
@@ -54,8 +52,7 @@ app.use(
     headers: (req, res, context) => {
       res.setHeader("Last-Modified", new Date());
     },
-    publicPath: config.output.publicPath,
-    
+    publicPath: config.output.publicPath,  
   })
 );
 

@@ -6,10 +6,20 @@ export default class Design {
         this.satellite = document.querySelector(".satellite");
     }
 
-    rotateYourDeviceAlert() {
+    showRotateDeviceAlert() {
+        this.removeAlertBox();
         this.hideIss();
         this.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation")
     };
+
+    rotateDeviceOnResize(callback, arg) {
+        window.addEventListener("resize", () => {
+            if (document.querySelector("#rotate") !== null) {
+                this.removeAlertBox();
+                callback(arg);
+            };
+        });
+    }
 
     showAlertBox(id, title, text, buttonText, imgURL, imgClass, callback, arg) {
         if (document.querySelector(".background") === null) {

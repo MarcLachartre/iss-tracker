@@ -2,43 +2,49 @@ import Design from "./design.js"
 import Device from "./device.js"
 
 export default class IssPositionLoop {
-  constructor(design) {
-    this.design = new Design();
+  constructor() {
+    this.events = [[document, "keyup"], [document.querySelector(".surface-map").querySelector(".button"), "click"], [window, "blur"]]; //Events on which the app sarts tracking the iss.
   }
 
   init() { // we want our app to be able to track the ISS for two minutes with a refresh time of 1s. In other words, every second for 2minutes, the app will place the ISS on the map. After 2 minutes a message will ask if the user is stil on the page.
     const design = new Design();
     const device = new Device();
-    const events = [[document, "keyup"], [document.querySelector(".surface-map").querySelector(".button"), "click"], [window, "focus"]]; //Events on which the app sarts tracking the iss.
+    // const events = [[document, "keyup"], [document.querySelector(".surface-map").querySelector(".button"), "click"], [window, "focus"]]; //Events on which the app sarts tracking the iss.
 
-    design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Press your space bar or click the "Spot The ISS" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.fetchLoop.bind(this), [0, design, events]);
+    design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Press your space bar or click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.fetchLoop.bind(this), [0, design, this.events]);
 
-    events.forEach(event => {     
+    this.events.forEach(event => {   
+      
       event[0].addEventListener(event[1], (e) => {
+         
         const isValidInput = () => { return (e.code === "Space" || e.code === "Enter") }
         const alertIsPresent = () => {return document.querySelector(".alert-box") !== null}
-
+  
         const startFetchLoop = () => {
           design.removeAlertBox();
-          this.fetchLoop(0, design, events);
+          this.fetchLoop(0);
+        
         }
 
+        console.log((isValidInput() && device.isPortrait() && alertIsPresent() && document.querySelector("#rotate") === null))
+        // if (isValidInput() && device.isPortrait() && alertIsPresent() && document.querySelector("#rotate") === null) {
+
+        //   design.showRotateDeviceAlert();
+        // }
+
         (isValidInput() && alertIsPresent() && device.isPortrait() === false) ? startFetchLoop() : false;
+
       });
     });
-     
+
     if (device.isMobileDevice()) {
-      window.addEventListener("resize", () => {
-        if (document.querySelector("#rotate") !== null) {
-            design.removeAlertBox();
-            this.fetchLoop(0, design, events)
-        };
-      });
+      design.rotateDeviceOnResize(this.fetchLoop.bind(this), 0);
     };
   }
 
-  async fetchLoop(timer, design, events) { //fetch loop is set with a timer, the Design object necessary to show the iss on the map, and the events it has to listen to in order to reset itself.
-    await this.placeIssOnMap(design, events); // initial placement of the iss on the map  
+  async fetchLoop(timer) { //fetch loop is set with a timer, the Design object necessary to show the iss on the map, and the events it has to listen to in order to reset itself.
+    const design = new Design();
+    await this.placeIssOnMap(design); // initial placement of the iss on the map  
     design.spotISS();
 
     const fetchCount = [];
@@ -49,14 +55,14 @@ export default class IssPositionLoop {
 
       if (device.isPortrait() && device.isMobileDevice()) {
         clearInterval(interval);
-        design.rotateYourDeviceAlert();
+        design.showRotateDeviceAlert();
       }
 
       if ((timer/10)%1 === 0) { // every second it is refreshing and fetching/placing the ISS on the map
           
         functionExecutionCount.push("count");
 
-        this.placeIssOnMap(design, events)
+        this.placeIssOnMap(design)
         .catch(response => { // if fetch fails it stops the loop. 
           if (response.message === "false") {
             clearInterval(interval);
@@ -69,14 +75,14 @@ export default class IssPositionLoop {
         })
 
         if ((functionExecutionCount.length - fetchCount.length) >= 3) { //if the connection is lost close to the end of the interval,set interval loop restarts before the server sends the error. Thats why we implemented the following, if we don't get an answer within one second, the user has to check his connection. If there is a count difference of 2, it means the loop missed one fetch response.
-          design.showAlertBox("wormhole", "Hey Astronaut !!!", "Houston here. It seems that you are lost in a wormhole... Please check your connection and retry!", "RETRY", "/wormhole.png", "trounoir", this.fetchLoop.bind(this), [0, design, events]);  
+          design.showAlertBox("wormhole", "Hey Astronaut !!!", "Houston here. It seems that you are lost in a wormhole... Please check your connection and retry!", "RETRY", "/wormhole.png", "trounoir", this.fetchLoop.bind(this), [0, design]);  
           design.hideIss();
           clearInterval(interval);
         }
       }
       
       if (timer === 0) { // add eventListener (only once) so that if the user presses spacebar or the spot iss button, it restarts the interval and also visually spots the iss on the map.
-        this.design.showIss();
+        design.showIss();
 
         const restartLoopHandler = (e) => {
           if (e.code === "Space" || e.code === "Enter" || e.type === "click" || e.type === "focus") { 
@@ -88,7 +94,7 @@ export default class IssPositionLoop {
         if (document.querySelector(".container").hasAttribute("listeners-added") === false) {
           document.querySelector(".container").setAttribute("listeners-added", true);
 
-          events.forEach(event => {
+          this.events.forEach(event => {
             event[0].addEventListener(event[1], (e) => { restartLoopHandler(e) }, false) 
           })
         }
@@ -104,13 +110,13 @@ export default class IssPositionLoop {
     },100);
   }
 
-  placeIssOnMap(design, events) { // fetches coordinates, converts then in position on screen, place an iss icon on the map.
+  placeIssOnMap(design) { // fetches coordinates, converts then in position on screen, place an iss icon on the map.
     return new Promise((success, reject) => { 
       this.fetchPosition(success, reject);
     })
     .catch((e)=> {
       if (document.querySelector(".alert-box") === null) {
-        design.showAlertBox("wormhole", "Hey Astronaut !!!", "Houston here. It seems that you are lost in a wormhole... Please check your connection and retry!", "RETRY", "/wormhole.png", "trounoir", this.fetchLoop.bind(this), [0, design, events]);  
+        design.showAlertBox("wormhole", "Hey Astronaut !!!", "Houston here. It seems that you are lost in a wormhole... Please check your connection and retry!", "RETRY", "/wormhole.png", "trounoir", this.fetchLoop.bind(this), [0, design]);  
         design.hideIss();
       }
         throw Error(false);
