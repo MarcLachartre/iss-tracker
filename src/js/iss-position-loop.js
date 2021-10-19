@@ -27,10 +27,10 @@ export default class IssPositionLoop {
         }
 
         console.log((isValidInput() && device.isPortrait() && alertIsPresent() && document.querySelector("#rotate") === null))
-        // if (isValidInput() && device.isPortrait() && alertIsPresent() && document.querySelector("#rotate") === null) {
+        if (isValidInput() && alertIsPresent() && document.querySelector("#rotate") === null) {
 
-        //   design.showRotateDeviceAlert();
-        // }
+          design.showRotateDeviceAlert();
+        }
 
         (isValidInput() && alertIsPresent() && device.isPortrait() === false) ? startFetchLoop() : false;
 
