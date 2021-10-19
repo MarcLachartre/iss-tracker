@@ -123,7 +123,7 @@ export default class IssPositionLoop {
   fetchPosition(success, reject) { // retrieves the iss coordinates
       var myInit = {method: 'GET'};
 
-      fetch('http://api.open-notify.org/iss-now.json', myInit)      
+      fetch('https://api.wheretheiss.at/v1/satellites/25544.json', myInit)      
       .catch(response => {
         if (!response.ok) {
           reject("false");
@@ -135,7 +135,7 @@ export default class IssPositionLoop {
         return response.json();
       })
       .then(res => {
-        success(res.iss_position); 
+        success({latitude: res.latitude, longitude: res.longitude}); 
       })
   }
 

@@ -11,7 +11,7 @@
     "watch": "webpack --watch",
     "start": "node server.js",
     "server": "node server.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.dev.js"
   },
   "keywords": [],
   "author": "",

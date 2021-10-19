@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 const app = express();
-const config = require('./webpack.prod.js');
+const config = require('./webpack.dev.js');
 const compiler = webpack(config);
 
 //////////////// Images load ////////////////
