@@ -14,7 +14,7 @@ export default class IssPositionLoop {
 
     this.events.forEach(event => {      
       event[0].addEventListener(event[1], (e) => {     
-        const isValidInput = () => { return (e.code === "Space" || e.code === "Enter")};
+        const isValidInput = () => { return (e.code === "Space" || e.code === "Enter" || e.type === "click")};
         const alertIsPresent = () => {return document.querySelector(".alert-box") !== null};
 
         (isValidInput() && alertIsPresent() && device.isPortrait() && document.querySelector("#rotate") === null) ? design.showRotateDeviceAlert() : false;
@@ -33,12 +33,12 @@ export default class IssPositionLoop {
     design.showIss();
 
     await this.placeIssOnMap(design); // initial placement of the iss on the map  
-    design.spotISS();
 
     const fetchCount = [];
     const functionExecutionCount = [];
 
     const device = new Device();
+    
     const interval = setInterval(() => {
 
       if (device.isPortrait() && device.isMobileDevice()) {
@@ -69,6 +69,7 @@ export default class IssPositionLoop {
       }
       
       if (timer === 0) { // add eventListener (only once) so that if the user presses spacebar or the spot iss button, it restarts the interval and also visually spots the iss on the map.
+        design.spotISS();
         const restartLoopHandler = (e) => {
           (e.code === "Space" || e.code === "Enter" || e.type === "click" || e.type === "focus") ? timer = 0 : false; 
         }
