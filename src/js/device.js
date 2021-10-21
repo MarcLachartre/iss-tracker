@@ -11,6 +11,6 @@ export default class Device {
     }
 
     isPortrait() {
-        return (screen.orientation.type.includes("portrait") || window.screen.width < window.screen.height ) ? true : false
+        return (window.screen.width < window.screen.height ) ? true : false
     }
 }
