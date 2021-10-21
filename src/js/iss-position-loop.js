@@ -21,6 +21,7 @@ export default class IssPositionLoop {
         (isValidInput() && alertIsPresent() && device.isPortrait() === false) ? this.startFetchLoop(0) : false;
       });
     });
+    document.querySelector(".alert-box").style.backgroundColor = "red"
 
     if (device.isMobileDevice()) {
       design.rotateDeviceOnResize(this.startFetchLoop.bind(this), 0);
