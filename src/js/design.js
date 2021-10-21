@@ -9,7 +9,7 @@ export default class Design {
     showRotateDeviceAlert() {
         this.removeAlertBox();
         this.hideIss();
-        this.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation")
+        this.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation");
     };
 
     rotateDeviceOnResize(callback, arg) {
@@ -95,7 +95,7 @@ export default class Design {
     removeAlertOnclick(button, callback, arg) {
         button.addEventListener("click", () => {
             this.removeAlertBox();
-            (this.device.isMobileDevice() && this.device.isPortrait()) ? this.rotateYourDeviceAlert() : callback(arg[0], arg[1])
+            (this.device.isMobileDevice() && this.device.isPortrait()) ? this.showRotateDeviceAlert() : callback(arg[0], arg[1])
         })
     }
 
