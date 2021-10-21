@@ -23,8 +23,6 @@ export default class IssPositionLoop {
     });
 
     if (device.isMobileDevice()) {
-      document.querySelector(".alert-box").style.backgroundColor = "red"
-
       design.rotateDeviceOnResize(this.startFetchLoop.bind(this), 0);
     };
   }
