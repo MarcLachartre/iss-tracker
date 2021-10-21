@@ -109,22 +109,22 @@ export default class IssPositionLoop {
   }
 
   fetchPosition(success, reject) { // retrieves the iss coordinates
-    var myInit = {method: 'GET'};
+      var myInit = {method: 'GET'};
 
-    fetch('https://api.wheretheiss.at/v1/satellites/25544.json', myInit)      
-    .catch(response => {
-      if (!response.ok) {
-        reject("false");
-        throw(Error(response)) 
-      }
-      return response;
-    })
-    .then((response) => {
-      return response.json();
-    })
-    .then(res => {
-      success({latitude: res.latitude, longitude: res.longitude}); 
-    })
+      fetch('https://api.wheretheiss.at/v1/satellites/25544.json', myInit)      
+      .catch(response => {
+        if (!response.ok) {
+          reject("false");
+          throw(Error(response)) 
+        }
+        return response;
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then(res => {
+        success({latitude: res.latitude, longitude: res.longitude}); 
+      })
   }
 
   positionOnMap(coordinates) { //converts the fetched coordinates of the iss into position on screen. With css top and left, we first placed the iss precisely on the center OF THE MAP, then with a cross product, we can place the iss as if we had an axis.
