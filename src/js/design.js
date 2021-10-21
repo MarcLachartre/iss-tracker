@@ -14,6 +14,7 @@ export default class Design {
 
     rotateDeviceOnResize(callback, arg) { 
         window.addEventListener("orientationchange", (e) => { // deprecated but still works on mobile, resize event is annoying becaus it fires twice
+            document.querySelector(".alert-box").style.backgroundColor = "red"
             if (this.device.isPortrait() === false) {
                 console.log("cul");
                 document.querySelector(".alert-box").style.backgroundColor = "red"
