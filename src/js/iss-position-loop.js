@@ -17,14 +17,13 @@ export default class IssPositionLoop {
         const isValidInput = () => { return (e.code === "Space" || e.code === "Enter")};
         const alertIsPresent = () => {return document.querySelector(".alert-box") !== null};
 
-        (isValidInput() && alertIsPresent() && device.isPortrait() && document.querySelector("#rotate") === null) ? design.showRotateDeviceAlert() : false;
+        // (isValidInput() && alertIsPresent() && device.isPortrait() && document.querySelector("#rotate") === null) ? design.showRotateDeviceAlert() : false;
         (isValidInput() && alertIsPresent() && device.isPortrait() === false) ? this.startFetchLoop(0) : false;
       });
     });
 
-    if (device.isMobileDevice() && window.screen.availHeight > window.screen.availWidth) {
-      document.querySelector(".alert-box").style.backgroundColor = "red"
-      // design.rotateDeviceOnResize(this.startFetchLoop.bind(this), 0);
+    if (device.isMobileDevice()) {
+      design.rotateDeviceOnResize(this.startFetchLoop.bind(this), 0);
     };
   }
 
