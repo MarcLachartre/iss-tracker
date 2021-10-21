@@ -12,10 +12,10 @@ export default class Design {
         this.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation");
     };
 
-    rotateDeviceOnResize(callback, arg) {
-        window.addEventListener("resize", () => {
-
+    rotateDeviceOnResize(callback, arg) { 
+        window.addEventListener("orientationchange", (e) => { // deprecated but still works on mobile, resize event is annoying becaus it fires twice
             if (document.querySelector("#rotate") !== null) {
+                console.log(document.querySelector("#rotate"));
                 document.querySelector(".alert-box").style.backgroundColor = "red"
                 this.removeAlertBox();
                 callback(arg);
