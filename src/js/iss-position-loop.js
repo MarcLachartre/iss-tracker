@@ -21,9 +21,10 @@ export default class IssPositionLoop {
         (isValidInput() && alertIsPresent() && device.isPortrait() === false) ? this.startFetchLoop(0) : false;
       });
     });
-    document.querySelector(".alert-box").style.backgroundColor = "red"
 
     if (device.isMobileDevice()) {
+      document.querySelector(".alert-box").style.backgroundColor = "red"
+
       design.rotateDeviceOnResize(this.startFetchLoop.bind(this), 0);
     };
   }
