@@ -22,8 +22,9 @@ export default class IssPositionLoop {
       });
     });
 
-    if (device.isMobileDevice()) {
-      design.rotateDeviceOnResize(this.startFetchLoop.bind(this), 0);
+    if (device.isMobileDevice() && window.screen.availHeight > window.screen.availWidth) {
+      document.querySelector(".alert-box").style.backgroundColor = "red"
+      // design.rotateDeviceOnResize(this.startFetchLoop.bind(this), 0);
     };
   }
 
