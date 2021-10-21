@@ -6,11 +6,13 @@ export default class Device {
     }
 
     isMobileDevice() {
-        const md = new MobileDetect(window.navigator.userAgent);
-        return (md.tablet() !== null || md.mobile() !== null) ? true : false
+        // const md = new MobileDetect(window.navigator.userAgent);
+        // return (md.tablet() !== null || md.mobile() !== null) ? true : false
+        return true
     }
 
     isPortrait() {
-        return (window.screen.width < window.screen.height ) ? true : false
+        // return (window.screen.width < window.screen.height ) ? true : false
+        return true
     }
 }
