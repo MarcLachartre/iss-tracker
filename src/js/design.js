@@ -16,11 +16,11 @@ export default class Design {
         window.addEventListener("orientationchange", (e) => { // deprecated but still works on mobile, resize event is annoying becaus it fires twice
             // document.querySelector(".alert-box").style.backgroundColor = "red"
             console.log(window.outerHeight)
-            console.log(window.outerWidth)
-            if (window.outerWidth > window.outerHeight ) {
+            console.log(window.screen.availHeight)
+            if (window.screen.availHeight > window.screen.availWidth ) {
                 console.log(window.innerWidth)
                 console.log("cul");
-                document.querySelector(".alert-box").style.backgroundColor = "red"
+                // document.querySelector(".alert-box").style.backgroundColor = "red"
                 this.removeAlertBox();
                 callback(arg);
             };
