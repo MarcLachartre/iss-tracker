@@ -18,7 +18,7 @@ export default class Design {
             if (this.device.isPortrait() === false) {
                 console.log("cul");
                 document.querySelector(".alert-box").style.backgroundColor = "red"
-                this.removeAlertBox();
+                // this.removeAlertBox();
                 callback(arg);
             };
         });
