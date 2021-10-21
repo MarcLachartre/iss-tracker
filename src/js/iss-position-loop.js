@@ -22,9 +22,9 @@ export default class IssPositionLoop {
       });
     });
 
-    // if (device.isMobileDevice()) {
+    if (device.isMobileDevice()) {
       design.rotateDeviceOnResize(this.startFetchLoop.bind(this), 0);
-    // };
+    };
   }
 
   async startFetchLoop(timer) { //fetch loop is set with a timer, the Design object necessary to show the iss on the map, and the events it has to listen to in order to reset itself.
