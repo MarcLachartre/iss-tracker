@@ -14,8 +14,9 @@ export default class Design {
 
     rotateDeviceOnResize(callback, arg) {
         window.addEventListener("resize", () => {
-            document.querySelector(".alert-box").style.backgroundColor = "red"
+
             if (document.querySelector("#rotate") !== null) {
+                document.querySelector(".alert-box").style.backgroundColor = "red"
                 this.removeAlertBox();
                 callback(arg);
             };
