@@ -15,7 +15,10 @@ export default class Design {
     rotateDeviceOnResize(callback, arg) { 
         window.addEventListener("orientationchange", (e) => { // deprecated but still works on mobile, resize event is annoying becaus it fires twice
             // document.querySelector(".alert-box").style.backgroundColor = "red"
-            if (screen.width > screen.height ) {
+            console.log(window.outerHeight)
+            console.log(window.outerWidth)
+            if (window.outerWidth > window.outerHeight ) {
+                console.log(window.innerWidth)
                 console.log("cul");
                 document.querySelector(".alert-box").style.backgroundColor = "red"
                 this.removeAlertBox();
