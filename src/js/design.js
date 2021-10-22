@@ -20,9 +20,9 @@ export default class Design {
                 // callback(arg);
             } else {
                 this.showIss()
-                if (document.querySelector("#rotate") !== null) {
-                this.removeAlertBox();
-                }
+                // if (document.querySelector("#rotate") !== null) {
+                // this.removeAlertBox();
+                // }
                 callback(arg)
             };
         });
@@ -102,7 +102,7 @@ export default class Design {
     removeAlertOnclick(button, callback, arg) {
         button.addEventListener("click", () => {
             this.removeAlertBox();
-            (this.device.isMobileDevice() && this.device.isPortrait()) ? this.showRotateDeviceAlert() : callback(arg[0], arg[1])
+            // (this.device.isMobileDevice() && this.device.isPortrait()) ? this.showRotateDeviceAlert() : callback(arg[0], arg[1])
         })
     }
 

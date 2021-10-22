@@ -23,7 +23,7 @@ export default class IssPositionLoop {
     });
 
     if (device.isMobileDevice()) {
-      // design.initRotateDeviceAlert(this.startFetchLoop.bind(this), 0)
+      design.initRotateDeviceAlert(this.startFetchLoop.bind(this), 0)
     };
   }
 
@@ -41,10 +41,9 @@ export default class IssPositionLoop {
     
     const interval = setInterval(() => {
 
-      // if (device.isPortrait() && device.isMobileDevice()) {
-      //   clearInterval(interval);
-      //   design.showRotateDeviceAlert();
-      // }
+      if (device.isPortrait() && device.isMobileDevice()) {
+        clearInterval(interval);
+      }
 
       if ((timer/10)%1 === 0) { // every second it is refreshing and fetching/placing the ISS on the map
         functionExecutionCount.push("count");
