@@ -18,12 +18,12 @@ export default class IssPositionLoop {
         const alertIsPresent = () => {return document.querySelector(".alert-box") !== null};
 
         // (isValidInput() && alertIsPresent() && device.isPortrait() && document.querySelector("#rotate") === null) ? design.showRotateDeviceAlert() : false;
-        (isValidInput() && alertIsPresent() && device.isPortrait() === false) ? this.startFetchLoop(0) : false;
+        (isValidInput() && alertIsPresent() && !device.isPortrait()) ? this.startFetchLoop(0) : false;
       });
     });
 
     if (device.isMobileDevice()) {
-      design.rotateDeviceOnResize(this.startFetchLoop.bind(this), 0);
+      design.initRotateDeviceAlert(this.startFetchLoop.bind(this), 0)
     };
   }
 
