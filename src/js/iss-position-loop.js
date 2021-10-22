@@ -23,7 +23,7 @@ export default class IssPositionLoop {
     });
 
     if (device.isMobileDevice()) {
-      design.initRotateDeviceAlert(this.startFetchLoop.bind(this), 0)
+      // design.initRotateDeviceAlert(this.startFetchLoop.bind(this), 0)
     };
   }
 
