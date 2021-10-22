@@ -7,7 +7,7 @@ export default class Design {
     }
 
     showRotateDeviceAlert() {
-        this.removeAlertBox();
+        // this.removeAlertBox();
         this.hideIss();
         this.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation");
     };
@@ -19,6 +19,10 @@ export default class Design {
                 // this.removeAlertBox();
                 // callback(arg);
             } else {
+                this.showIss()
+                if (document.querySelector("#rotate") !== null) {
+                this.removeAlertBox();
+                }
                 callback(arg)
             };
         });
