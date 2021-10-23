@@ -7,24 +7,30 @@ export default class Design {
     }
 
     showRotateDeviceAlert() {
-        // this.removeAlertBox();
         this.hideIss();
         this.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation");
+
     };
 
     initRotateDeviceAlert(callback, arg) { 
-        window.addEventListener("orientationchange", () => { // deprecated but still works on mobile, resize event is annoying because it fires twice
-            if (window.screen.availHeight > window.screen.availWidth ) {
+        const rotateDeviceAlertSelector = () => {
+            if (window.screen.availHeight > window.screen.availWidth && document.querySelector("#rotate") === null ) {
                 this.showRotateDeviceAlert()
                 // this.removeAlertBox();
                 // callback(arg);
-            } else {
+            } else  {
+                // if ( document.qu)
                 this.showIss()
                 // if (document.querySelector("#rotate") !== null) {
                 // this.removeAlertBox();
                 // }
                 callback(arg)
             };
+        }
+
+        rotateDeviceAlertSelector()
+        window.addEventListener("orientationchange", () => { // deprecated but still works on mobile, resize event is annoying because it fires twice
+            rotateDeviceAlertSelector()
         });
     }
 
