@@ -14,7 +14,7 @@ export default class IssPositionLoop {
 
     this.events.forEach(event => {      
       event[0].addEventListener(event[1], (e) => {     
-        const isValidInput = () => { return (e.code === "Space" || e.code === "Enter")};
+        const isValidInput = () => { return (e.code === "Space" || e.code === "Enter" || e.type === "click")};
         const alertIsPresent = () => {return document.querySelector(".alert-box") !== null};
 
         // (isValidInput() && alertIsPresent() && device.isPortrait() && document.querySelector("#rotate") === null) ? design.showRotateDeviceAlert() : false;
@@ -40,7 +40,7 @@ export default class IssPositionLoop {
     const device = new Device();
     
     const interval = setInterval(() => {
-
+      console.log(timer)
       if (device.isPortrait() && device.isMobileDevice()) {
         clearInterval(interval);
       }
