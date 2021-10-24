@@ -103,7 +103,7 @@ export default class Design {
     removeAlertOnclick(button, callback, arg) {
         button.addEventListener("click", () => {
             this.removeAlertBox();
-            this.rotateDeviceAlertSelector(callback, arg)
+            // this.rotateDeviceAlertSelector(callback, arg)
         })
     }
 
