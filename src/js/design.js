@@ -22,7 +22,7 @@ export default class Design {
         if (window.screen.availHeight > window.screen.availWidth && document.querySelector("#rotate") === null ) {
             this.showRotateDeviceAlert();
             this.hideIss();
-        } else if (window.screen.availHeight < window.screen.availWidth && document.querySelector("#rotate") !== null) {
+        } else if (window.screen.availHeight < window.screen.availWidth) {
             this.removeAlertBox();
             this.showIss();
             callback(arg);
@@ -103,7 +103,7 @@ export default class Design {
     removeAlertOnclick(button, callback, arg) {
         button.addEventListener("click", () => {
             this.removeAlertBox();
-            // this.rotateDeviceAlertSelector(callback, arg)
+            this.rotateDeviceAlertSelector(callback, arg)
         })
     }
 
