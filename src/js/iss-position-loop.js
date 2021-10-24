@@ -13,7 +13,7 @@ export default class IssPositionLoop {
     design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Press your space bar or click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), [0, design]);
 
     this.events.forEach(event => {      
-      event[0].addEventListener(event[1], (e) => {     
+      event[0].addEventListener(event[1], (e) => {    
         const isValidInput = () => { return (e.code === "Space" || e.code === "Enter" || e.type === "click")};
         const alertIsPresent = () => {return document.querySelector(".alert-box") !== null};
 
@@ -23,7 +23,8 @@ export default class IssPositionLoop {
     });
 
     if (device.isMobileDevice()) {
-      design.initRotateDeviceAlert(this.startFetchLoop.bind(this), 0)
+      design.addRotateDeviceListener(this.startFetchLoop.bind(this), 0);
+      // (document.querySelector(".button") !== null) ? document.querySelector(".button").addEventListener("click", () => { design.rotateDeviceAlertSelector(this.startFetchLoop.bind(this), 0) }): false
     };
   }
 

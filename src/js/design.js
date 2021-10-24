@@ -12,26 +12,21 @@ export default class Design {
 
     };
 
-    initRotateDeviceAlert(callback, arg) { 
-        const rotateDeviceAlertSelector = () => {
-            if (window.screen.availHeight > window.screen.availWidth && document.querySelector("#rotate") === null ) {
-                this.showRotateDeviceAlert()
-                // this.removeAlertBox();
-                // callback(arg);
-            } else  {
-                // if ( document.qu)
-                this.showIss()
-                // if (document.querySelector("#rotate") !== null) {
-                // this.removeAlertBox();
-                // }
-                callback(arg)
-            };
-        }
-
-        rotateDeviceAlertSelector()
+    addRotateDeviceListener(callback, arg) { 
         window.addEventListener("orientationchange", () => { // deprecated but still works on mobile, resize event is annoying because it fires twice
-            rotateDeviceAlertSelector()
+            this.rotateDeviceAlertSelector(callback, arg)
         });
+    }
+
+    rotateDeviceAlertSelector(callback, arg) {
+        if (window.screen.availHeight > window.screen.availWidth && document.querySelector("#rotate") === null ) {
+            this.showRotateDeviceAlert();
+            this.hideIss();
+        } else if (window.screen.availHeight < window.screen.availWidth && document.querySelector("#rotate") !== null) {
+            this.removeAlertBox();
+            this.showIss();
+            callback(arg);
+        };
     }
 
     showAlertBox(id, title, text, buttonText, imgURL, imgClass, callback, arg) {
@@ -108,7 +103,7 @@ export default class Design {
     removeAlertOnclick(button, callback, arg) {
         button.addEventListener("click", () => {
             this.removeAlertBox();
-            // (this.device.isMobileDevice() && this.device.isPortrait()) ? this.showRotateDeviceAlert() : callback(arg[0], arg[1])
+            (this.device.isMobileDevice() && this.device.isPortrait()) ? this.showRotateDeviceAlert() : callback(arg[0], arg[1])
         })
     }
 
