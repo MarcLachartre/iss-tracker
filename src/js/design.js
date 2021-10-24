@@ -19,10 +19,12 @@ export default class Design {
     }
 
     rotateDeviceAlertSelector(callback, arg) {
-        if (window.screen.availHeight > window.screen.availWidth) {
+        if (document.documentElement.clientHeight < document.documentElement.clientWidth) {
             this.showRotateDeviceAlert();
             this.hideIss();
-        } else if (window.screen.availHeight < window.screen.availWidth) {
+            console.log(1)
+        } else if (document.documentElement.clientHeight > document.documentElement.clientWidth) {
+            console.log(2)
             this.removeAlertBox();
             this.showIss();
             console.log(arg)
