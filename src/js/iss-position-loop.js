@@ -9,7 +9,7 @@ export default class IssPositionLoop {
   init() { // we want our app to be able to track the ISS for two minutes with a refresh time of 1s. In other words, every second for 2minutes, the app will place the ISS on the map. After 2 minutes a message will ask if the user is stil on the page. It also checks on input that the device is correctly orientated.
     const design = new Design();
     const device = new Device();
-    console.log(document.documentElement.clientHeight)
+
     design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Press your space bar or click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
     
     if (!device.isMobileDevice()) {  

@@ -13,23 +13,30 @@ export default class Design {
     };
 
     addRotateDeviceListener(callback, arg) { 
-        window.addEventListener("orientationchange", () => { // deprecated but still works on mobile, resize event is annoying because it fires twice
+        this.isOriented();
+        
+        window.addEventListener("orientationchange", (e) => { // deprecated but still works on mobile, resize event is annoying because it fires twice
             this.rotateDeviceAlertSelector(callback, arg)
         });
     }
 
+    isOriented() {
+        (document.documentElement.clientHeight > document.documentElement.clientWidth) ? document.querySelector(".container").setAttribute("orientation", "portrait") : document.querySelector(".container").setAttribute("orientation", "landscape")
+    }
+
     rotateDeviceAlertSelector(callback, arg) {
-        if (document.documentElement.clientHeight < document.documentElement.clientWidth) {
-            this.showRotateDeviceAlert();
-            this.hideIss();
-            console.log(1)
-        } else if (document.documentElement.clientHeight > document.documentElement.clientWidth) {
-            console.log(2)
+        console.log()
+        if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
+            document.querySelector(".container").setAttribute("orientation", "landscape")
             this.removeAlertBox();
             this.showIss();
-            console.log(arg)
             callback(arg);
-        };
+            // console.log(2);
+        } else {
+            document.querySelector(".container").setAttribute("orientation", "portrait")
+            this.showRotateDeviceAlert();
+            this.hideIss();
+        }
     }
 
     showAlertBox(id, title, text, buttonText, imgURL, imgClass, callback, arg) {
