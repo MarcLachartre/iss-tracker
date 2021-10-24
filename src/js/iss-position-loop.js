@@ -10,15 +10,14 @@ export default class IssPositionLoop {
     const design = new Design();
     const device = new Device();
 
-    design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Press your space bar or click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), [0, design]);
+    design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Press your space bar or click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
 
     this.events.forEach(event => {      
       event[0].addEventListener(event[1], (e) => {    
         const isValidInput = () => { return (e.code === "Space" || e.code === "Enter" || e.type === "click")};
         const alertIsPresent = () => {return document.querySelector(".alert-box") !== null};
 
-        // (isValidInput() && alertIsPresent() && device.isPortrait() && document.querySelector("#rotate") === null) ? design.showRotateDeviceAlert() : false;
-        (isValidInput() && alertIsPresent() && !device.isPortrait()) ? this.startFetchLoop(0) : false;
+        (isValidInput()) ? this.startFetchLoop(0) : false;
       });
     });
 
@@ -62,7 +61,7 @@ export default class IssPositionLoop {
         })
 
         if ((functionExecutionCount.length - fetchCount.length) >= 3) { //if the connection is lost close to the end of the interval,set interval loop restarts before the server sends the error. Thats why we implemented the following, if we don't get an answer within one second, the user has to check his connection. If there is a count difference of 2, it means the loop missed one fetch response.
-          design.showAlertBox("wormhole", "Hey Astronaut !!!", "Houston here. It seems that you are lost in a wormhole... Please check your connection and retry!", "RETRY", "/wormhole.png", "trounoir", this.startFetchLoop.bind(this), [0, design]);  
+          design.showAlertBox("wormhole", "Hey Astronaut !!!", "Houston here. It seems that you are lost in a wormhole... Please check your connection and retry!", "RETRY", "/wormhole.png", "trounoir", this.startFetchLoop.bind(this), 0);  
           design.hideIss();
           clearInterval(interval);
         }
@@ -84,7 +83,7 @@ export default class IssPositionLoop {
 
       if (timer >= 1200) { // after 2minutes, the interval stops, no more fetch is done, and a alert box prompts the user to decide whether or not he wants to keep tracking the ISS.
         clearInterval(interval);
-        design.showAlertBox("astronaut", "Hey Astronaut !!!", "Houston here. Are you still with us or are you lost in space? Do you copy?", "STILL HERE", "/astronaut.png", "astronaut", this.startFetchLoop.bind(this), [0, design, events]);
+        design.showAlertBox("astronaut", "Hey Astronaut !!!", "Houston here. Are you still with us or are you lost in space? Do you copy?", "STILL HERE", "/astronaut.png", "astronaut", this.startFetchLoop.bind(this), 0);
         design.hideIss();
       };
 
@@ -98,7 +97,7 @@ export default class IssPositionLoop {
     })
     .catch((e)=> {
       if (document.querySelector(".alert-box") === null) {
-        design.showAlertBox("wormhole", "Hey Astronaut !!!", "Houston here. It seems that you are lost in a wormhole... Please check your connection and retry!", "RETRY", "/wormhole.png", "trounoir", this.fetchLoop.bind(this), [0, design]);  
+        design.showAlertBox("wormhole", "Hey Astronaut !!!", "Houston here. It seems that you are lost in a wormhole... Please check your connection and retry!", "RETRY", "/wormhole.png", "trounoir", this.fetchLoop.bind(this), 0);  
         design.hideIss();
       }
         throw Error(false);
