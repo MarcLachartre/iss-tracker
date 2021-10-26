@@ -13,29 +13,23 @@ export default class Design {
     };
 
     addRotateDeviceListener(callback, arg) { 
-        this.isOriented();
-        
         window.addEventListener("orientationchange", (e) => { // deprecated but still works on mobile, resize event is annoying because it fires twice
             this.rotateDeviceAlertSelector(callback, arg)
         });
     }
 
-    isOriented() {
-        (document.documentElement.clientHeight > document.documentElement.clientWidth) ? document.querySelector(".container").setAttribute("orientation", "portrait") : document.querySelector(".container").setAttribute("orientation", "landscape")
-    }
+    // setOrientationMarker() {
+    //     // const orientation = document.querySelector(".container").getAttribute("orientation")
+    //     (document.querySelector(".container").getAttribute("orientation") === "portrait") ? document.querySelector(".container").setAttribute("orientation", "landscape") : document.querySelector(".container").setAttribute("orientation", "portrait")
+    // }
 
     rotateDeviceAlertSelector(callback, arg) {
-        console.log()
         if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
-            document.querySelector(".container").setAttribute("orientation", "landscape")
             this.removeAlertBox();
             this.showIss();
             callback(arg);
-            // console.log(2);
         } else {
-            document.querySelector(".container").setAttribute("orientation", "portrait")
             this.showRotateDeviceAlert();
-            this.hideIss();
         }
     }
 
@@ -112,8 +106,11 @@ export default class Design {
 
     removeAlertOnclick(button, callback, arg) {
         button.addEventListener("click", () => {
-            this.removeAlertBox();
-            this.rotateDeviceAlertSelector(callback, arg)
+            // if () {}this.removeAlertBox();
+            // this.showIss();
+            // this.removeAlertBox();
+            callback(arg);
+            // this.rotateDeviceAlertSelector(callback, arg)
         })
     }
 

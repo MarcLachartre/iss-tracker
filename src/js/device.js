@@ -13,4 +13,8 @@ export default class Device {
     isPortrait() {
         return (window.screen.width < window.screen.height ) ? true : false
     }
+
+    initOrientationMarker() {
+        (document.documentElement.clientHeight > document.documentElement.clientWidth) ? document.querySelector(".container").setAttribute("orientation", "portrait") : document.querySelector(".container").setAttribute("orientation", "landscape")
+    }
 }
