@@ -51,6 +51,8 @@ export default class IssPositionLoop {
     const interval = setInterval(() => {
       console.log(timer)
       if (device.isPortrait() && device.isMobileDevice()) {
+        design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
+
         clearInterval(interval);
       }
 
@@ -82,13 +84,11 @@ export default class IssPositionLoop {
         const handler = (e) => {
           timer = 0;
           document.querySelector(".surface-map").querySelector(".button").removeEventListener("click", handler, true);
-          document.querySelector(".surface-map").querySelector(".button").removeEventListener("touchstart", handler, true);
           window.removeEventListener("keyup", handler, true);
           window.removeEventListener("focus", handler, true);
         };
 
         document.querySelector(".surface-map").querySelector(".button").addEventListener("click", handler, true); 
-        document.querySelector(".surface-map").querySelector(".button").addEventListener("touchstart", handler, true); 
         window.addEventListener("keyup", handler, true);
         window.addEventListener("focus", handler, true);
       }
