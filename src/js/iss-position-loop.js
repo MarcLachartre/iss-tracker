@@ -50,11 +50,11 @@ export default class IssPositionLoop {
     
     const interval = setInterval(() => {
       console.log(timer)
-      if (device.isPortrait() && device.isMobileDevice()) {
-        design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
+      // if (device.isPortrait() && device.isMobileDevice()) {
+      //   design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
 
-        clearInterval(interval);
-      }
+      //   clearInterval(interval);
+      // }
 
       if ((timer/10)%1 === 0) { // every second it is refreshing and fetching/placing the ISS on the map
         functionExecutionCount.push("count");
