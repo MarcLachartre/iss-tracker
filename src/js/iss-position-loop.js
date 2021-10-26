@@ -11,6 +11,7 @@ export default class IssPositionLoop {
     const device = new Device();
 
     if (!device.isMobileDevice()) {
+      console.log("bite")
       design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Press your space bar or click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
 
       this.events.forEach(event => {      
@@ -25,12 +26,12 @@ export default class IssPositionLoop {
 
     if (device.isMobileDevice()) {
       device.initOrientationMarker();
+
       design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
 
-
-      document.querySelector(".surface-map").querySelector(".button").addEventListener("click", () => {
-          this.startFetchLoop(0);
-        })
+      // document.querySelector(".surface-map").querySelector(".button").addEventListener("click", () => {
+      //   this.startFetchLoop(0);
+      // })
       // design.addRotateDeviceListener(this.startFetchLoop.bind(this), 0);
       // (document.querySelector(".button") !== null) ? document.querySelector(".button").addEventListener("click", () => { design.rotateDeviceAlertSelector(this.startFetchLoop.bind(this), 0) }): false
     };
