@@ -9,7 +9,6 @@ export default class Design {
     showRotateDeviceAlert() {
         this.hideIss();
         this.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation");
-
     };
 
     addRotateDeviceListener(callback, arg) { 
@@ -17,11 +16,6 @@ export default class Design {
             this.rotateDeviceAlertSelector(callback, arg)
         });
     }
-
-    // setOrientationMarker() {
-    //     // const orientation = document.querySelector(".container").getAttribute("orientation")
-    //     (document.querySelector(".container").getAttribute("orientation") === "portrait") ? document.querySelector(".container").setAttribute("orientation", "landscape") : document.querySelector(".container").setAttribute("orientation", "portrait")
-    // }
 
     rotateDeviceAlertSelector(callback, arg) {
         if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
@@ -106,11 +100,7 @@ export default class Design {
 
     removeAlertOnclick(button, callback, arg) {
         button.addEventListener("click", () => {
-            // if () {}this.removeAlertBox();
-            // this.showIss();
-            // this.removeAlertBox();
             callback(arg);
-            // this.rotateDeviceAlertSelector(callback, arg)
         })
     }
 

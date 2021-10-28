@@ -9,16 +9,14 @@ export default class IssPositionLoop {
   init() { // we want our app to be able to track the ISS for two minutes with a refresh time of 1s. In other words, every second for 2minutes, the app will place the ISS on the map. After 2 minutes a message will ask if the user is stil on the page. It also checks on input that the device is correctly orientated.
     const design = new Design();
     const device = new Device();
+    const alertBoxIsPresent = () => {return document.querySelector(".alert-box") !== null};
 
     if (!device.isMobileDevice()) {
-      console.log("bite")
       design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Press your space bar or click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
-
+      
       this.events.forEach(event => {      
         event[0].addEventListener(event[1], (e) => {    
           const isValidInput = () => { return (e.code === "Space" || e.code === "Enter" || e.type === "click")};
-          const alertBoxIsPresent = () => {return document.querySelector(".alert-box") !== null}
-
           (isValidInput() && alertBoxIsPresent()) ? this.startFetchLoop(0) : false;
         });
       });
@@ -28,12 +26,26 @@ export default class IssPositionLoop {
       device.initOrientationMarker();
 
       design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
+      document.querySelector(".alert-box").querySelector(".button").addEventListener("click", () => {
+        if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
+          design.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation");
+        }
+      })
+      
+      window.addEventListener("orientationchange", () => {
 
-      // document.querySelector(".surface-map").querySelector(".button").addEventListener("click", () => {
-      //   this.startFetchLoop(0);
-      // })
-      // design.addRotateDeviceListener(this.startFetchLoop.bind(this), 0);
-      // (document.querySelector(".button") !== null) ? document.querySelector(".button").addEventListener("click", () => { design.rotateDeviceAlertSelector(this.startFetchLoop.bind(this), 0) }): false
+
+
+        if (alertBoxIsPresent() !== false && document.querySelector("#rotate") === null) {
+          return
+        } else if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
+          console.log("chatte")
+          design.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation");
+        } else {
+          console.log("bite")
+          this.startFetchLoop(0)
+        }    
+      });
     };
   }
 
@@ -51,11 +63,11 @@ export default class IssPositionLoop {
     
     const interval = setInterval(() => {
       console.log(timer)
-      // if (device.isPortrait() && device.isMobileDevice()) {
-      //   design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
 
-      //   clearInterval(interval);
-      // }
+      if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
+        design.hideIss();
+        clearInterval(interval)
+      }
 
       if ((timer/10)%1 === 0) { // every second it is refreshing and fetching/placing the ISS on the map
         functionExecutionCount.push("count");
@@ -85,13 +97,11 @@ export default class IssPositionLoop {
         const handler = (e) => {
           timer = 0;
           document.querySelector(".surface-map").querySelector(".button").removeEventListener("click", handler, true);
-          document.querySelector(".surface-map").querySelector(".button").removeEventListener("touchstart", handler, true);
           window.removeEventListener("keyup", handler, true);
           window.removeEventListener("focus", handler, true);
         };
 
         document.querySelector(".surface-map").querySelector(".button").addEventListener("click", handler, true); 
-        document.querySelector(".surface-map").querySelector(".button").addEventListener("touchstart", handler, true); 
         window.addEventListener("keyup", handler, true);
         window.addEventListener("focus", handler, true);
       }

@@ -11,10 +11,20 @@ export default class Device {
     }
 
     isPortrait() {
-        return (window.screen.width < window.screen.height ) ? true : false
+        return (window.screen.width < window.screen.height) ? true : false
     }
 
-    initOrientationMarker() {
+    initOrientationMarker(callback, arg) {
         (document.documentElement.clientHeight > document.documentElement.clientWidth) ? document.querySelector(".container").setAttribute("orientation", "portrait") : document.querySelector(".container").setAttribute("orientation", "landscape")
+        window.addEventListener("orientationchange", () => {
+            if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
+                document.querySelector(".container").setAttribute("orientation", "landscape")
+                
+                // callback(arg)
+                
+            } else { 
+                document.querySelector(".container").setAttribute("orientation", "portrait");
+            }       
+        })
     }
 }
