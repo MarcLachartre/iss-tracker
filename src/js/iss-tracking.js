@@ -87,7 +87,11 @@ export default class IssTracking extends RetrieveIssPosition {
     this.events.forEach(event => {      
       event[0].addEventListener(event[1], (e) => {    
         const isValidInput = () => { return (e.code === "Space" || e.code === "Enter" || e.type === "click")};
-        (isValidInput() && alertBoxIsPresent()) ? this.startFetchLoop(0) : false;
+        if (isValidInput() && alertBoxIsPresent()) {
+          this.design.showIss();
+          this.design.removeAlertBox();
+          this.startFetchLoop(0);
+        };
       });
     });
   }
@@ -107,14 +111,15 @@ export default class IssTracking extends RetrieveIssPosition {
         this.design.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation");
       
       } else {
-        this.startFetchLoop(0)
+        this.startFetchLoop(0);
+        this.design.showIss();
+        this.design.removeAlertBox();
       }    
     });
   }
 
   async startFetchLoop(timer) { //fetch loop is set with a timer, the Design object necessary to show the iss on the map, and the events it has to listen to in order to reset itself.
-    this.design.showIss();
-    this.design.removeAlertBox();
+
 
     await super.placeIssOnMap(); // initial placement of the iss on the map  
 
@@ -132,7 +137,18 @@ export default class IssTracking extends RetrieveIssPosition {
       }
       
       if (timer === 0) { // add eventListener (only once) so that if the user focuses back on the page or presses any key or the spot iss button, it restarts the interval and also visually spots the iss on the map.
-        this.initInterval()
+        this.design.spotISS();
+
+        const handler = () => {
+          timer = 0;
+          document.querySelector(".surface-map").querySelector(".button").removeEventListener("click", handler, true);
+          window.removeEventListener("keyup", handler, true);
+          window.removeEventListener("focus", handler, true);
+        };
+    
+        document.querySelector(".surface-map").querySelector(".button").addEventListener("click", handler, true); 
+        window.addEventListener("keyup", handler, true);
+        window.addEventListener("focus", handler, true);
       } else if (timer >= 1200) { // after 2minutes, the interval stops, iss icon is hidden, no more fetch is done, and a alert box prompts the user to decide whether or not he wants to keep tracking the ISS.
         this.end(interval);
       };
@@ -162,19 +178,8 @@ export default class IssTracking extends RetrieveIssPosition {
     }
   }
 
-  initInterval() {
-    this.design.spotISS();
+  initInterval(timer) {
 
-    const handler = () => {
-      timer = 0;
-      document.querySelector(".surface-map").querySelector(".button").removeEventListener("click", handler, true);
-      window.removeEventListener("keyup", handler, true);
-      window.removeEventListener("focus", handler, true);
-    };
-
-    document.querySelector(".surface-map").querySelector(".button").addEventListener("click", handler, true); 
-    window.addEventListener("keyup", handler, true);
-    window.addEventListener("focus", handler, true);
   }
 
   end() {
