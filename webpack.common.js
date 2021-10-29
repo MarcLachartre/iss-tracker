@@ -1,8 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-
 // importing a new type of asset (.csv, .json etc...) requires configuration, cf https://webpack.js.org/guides/asset-management/
 module.exports = {
   entry: {
@@ -37,12 +35,4 @@ module.exports = {
     clean: true,
     publicPath: '/',
 },
-
-//   optimization: {
-//     // minimizer: [
-//     //   // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
-//     //   // `...`,
-//     //   new CssMinimizerPlugin(),
-//     // ],
-//   },
 };

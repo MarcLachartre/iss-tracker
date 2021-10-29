@@ -13,4 +13,4 @@ class App {
   };
 }
 
-new App().init()
+new App().init();
