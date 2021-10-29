@@ -33,16 +33,14 @@ export default class IssPositionLoop {
       })
       
       window.addEventListener("orientationchange", () => {
-
-
-
         if (alertBoxIsPresent() !== false && document.querySelector("#rotate") === null) {
           return
+
         } else if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
-          console.log("chatte")
+
           design.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation");
+        
         } else {
-          console.log("bite")
           this.startFetchLoop(0)
         }    
       });
@@ -62,7 +60,6 @@ export default class IssPositionLoop {
     const device = new Device();
     
     const interval = setInterval(() => {
-      console.log(timer)
 
       if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
         design.hideIss();
@@ -72,15 +69,16 @@ export default class IssPositionLoop {
       if ((timer/10)%1 === 0) { // every second it is refreshing and fetching/placing the ISS on the map
         functionExecutionCount.push("count");
 
-        this.placeIssOnMap(design)
-        .catch(response => { // if fetch fails it stops the loop. 
-          if (response.message === "false") {
+        this.placeIssOnMap(design, interval).catch(response => { // if fetch fails it stops the loop. 
+          console.log("error")
             clearInterval(interval);
             fetchCount.push("error");
+            console.log(response.message)
             throw Error(response.message);
-          }
+          
         }).then(() => {
           fetchCount.push("success");
+          console.log("success")
           return
         })
 
@@ -116,39 +114,28 @@ export default class IssPositionLoop {
     }, 100);
   }
 
-  placeIssOnMap(design) { // fetches coordinates, converts then in position on screen, place an iss icon on the map.
-    return new Promise((success, reject) => { 
-      this.fetchPosition(success, reject);
-    })
-    .catch((e)=> {
-      if (document.querySelector(".alert-box") === null) {
-        design.showAlertBox("wormhole", "Hey Astronaut !!!", "Houston here. It seems that you are lost in a wormhole... Please check your connection and retry!", "RETRY", "/wormhole.png", "trounoir", this.fetchLoop.bind(this), 0);  
-        design.hideIss();
+  placeIssOnMap(design, interval) { // fetches coordinates, converts then in position on screen, place an iss icon on the map.
+    var myInit = {method: 'GET'};
+
+    return fetch('https://api.wheretheiss.at/v1/satellites/25544.json', myInit)      
+    .catch(response => {
+     
+        if (document.querySelector(".alert-box") === null) {
+          design.showAlertBox("wormhole", "Hey Astronaut !!!", "Houston here. It seems that you are lost in a wormhole... Please check your connection and retry!", "RETRY", "/wormhole.png", "trounoir", this.startFetchLoop.bind(this), 0);  
+          design.hideIss();
+          clearInterval(interval)
+        
+        throw(Error(response)) 
       }
-        throw Error(false);
+   
     })
-    .then((coordinates) => {
+    .then((response) => {
+      return response.json();
+    })
+    .then(res => {
+      const coordinates = {latitude: res.latitude, longitude: res.longitude};
       return this.positionOnMap(coordinates);
     })
-  }
-
-  fetchPosition(success, reject) { // retrieves the iss coordinates
-      var myInit = {method: 'GET'};
-
-      fetch('https://api.wheretheiss.at/v1/satellites/25544.json', myInit)      
-      .catch(response => {
-        if (!response.ok) {
-          reject("false");
-          throw(Error(response)) 
-        }
-        return response;
-      })
-      .then((response) => {
-        return response.json();
-      })
-      .then(res => {
-        success({latitude: res.latitude, longitude: res.longitude}); 
-      })
   }
 
   positionOnMap(coordinates) { //converts the fetched coordinates of the iss into position on screen. With css top and left, we first placed the iss precisely on the center OF THE MAP, then with a cross product, we can place the iss as if we had an axis.
@@ -175,3 +162,40 @@ export default class IssPositionLoop {
     }
   }
 }
+
+// placeIssOnMap(design) { // fetches coordinates, converts then in position on screen, place an iss icon on the map.
+  //   return new Promise((success, reject) => { 
+  //     this.fetchPosition(success, reject);
+  //   })
+  //   .catch((e)=> {
+  //     if (document.querySelector(".alert-box") === null) {
+  //       console.log("cul")
+  //       design.showAlertBox("wormhole", "Hey Astronaut !!!", "Houston here. It seems that you are lost in a wormhole... Please check your connection and retry!", "RETRY", "/wormhole.png", "trounoir", this.fetchLoop.bind(this), 0);  
+  //       design.hideIss();
+  //     }
+  //       throw Error(false);
+        
+  //   })
+  //   .then((coordinates) => {
+  //     return this.positionOnMap(coordinates);
+  //   })
+  // }
+
+  // fetchPosition(success, reject) { // retrieves the iss coordinates
+  //     var myInit = {method: 'GET'};
+
+  //     fetch('https://api.wheretheiss.at/v1/satellites/25544.json', myInit)      
+  //     .catch(response => {
+  //       if (!response.ok) {
+  //         reject("false");
+  //         throw(Error(response)) 
+  //       }
+  //       return response;
+  //     })
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then(res => {
+  //       success({latitude: res.latitude, longitude: res.longitude}); 
+  //     })
+  // }

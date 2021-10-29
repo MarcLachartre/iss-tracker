@@ -30,6 +30,10 @@
     border-top: 1px solid white; 
   }
 
+.fusee {
+    width: 40%;
+}
+
 .astronaut {
     margin-right: 60px;
     margin-left: 20px;
