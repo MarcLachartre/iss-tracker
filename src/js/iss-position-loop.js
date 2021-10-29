@@ -104,7 +104,7 @@ export default class IssPositionLoop {
         window.addEventListener("focus", handler, true);
       }
 
-      if (timer >= 1) { // after 2minutes, the interval stops, iss icon is hidden, no more fetch is done, and a alert box prompts the user to decide whether or not he wants to keep tracking the ISS.
+      if (timer >= 1200) { // after 2minutes, the interval stops, iss icon is hidden, no more fetch is done, and a alert box prompts the user to decide whether or not he wants to keep tracking the ISS.
         clearInterval(interval);
         design.showAlertBox("astronaut", "Hey Astronaut !!!", "Houston here. Are you still with us or are you lost in space? Do you copy?", "STILL HERE", "/astronaut.png", "astronaut", this.startFetchLoop.bind(this), 0);
         design.hideIss();
@@ -162,40 +162,3 @@ export default class IssPositionLoop {
     }
   }
 }
-
-// placeIssOnMap(design) { // fetches coordinates, converts then in position on screen, place an iss icon on the map.
-  //   return new Promise((success, reject) => { 
-  //     this.fetchPosition(success, reject);
-  //   })
-  //   .catch((e)=> {
-  //     if (document.querySelector(".alert-box") === null) {
-  //       console.log("cul")
-  //       design.showAlertBox("wormhole", "Hey Astronaut !!!", "Houston here. It seems that you are lost in a wormhole... Please check your connection and retry!", "RETRY", "/wormhole.png", "trounoir", this.fetchLoop.bind(this), 0);  
-  //       design.hideIss();
-  //     }
-  //       throw Error(false);
-        
-  //   })
-  //   .then((coordinates) => {
-  //     return this.positionOnMap(coordinates);
-  //   })
-  // }
-
-  // fetchPosition(success, reject) { // retrieves the iss coordinates
-  //     var myInit = {method: 'GET'};
-
-  //     fetch('https://api.wheretheiss.at/v1/satellites/25544.json', myInit)      
-  //     .catch(response => {
-  //       if (!response.ok) {
-  //         reject("false");
-  //         throw(Error(response)) 
-  //       }
-  //       return response;
-  //     })
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then(res => {
-  //       success({latitude: res.latitude, longitude: res.longitude}); 
-  //     })
-  // }

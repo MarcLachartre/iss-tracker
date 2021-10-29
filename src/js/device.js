@@ -19,8 +19,7 @@ export default class Device {
         window.addEventListener("orientationchange", () => {
             if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
                 document.querySelector(".container").setAttribute("orientation", "landscape")
-                
-                // callback(arg)
+
                 
             } else { 
                 document.querySelector(".container").setAttribute("orientation", "portrait");
