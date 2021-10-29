@@ -13,7 +13,7 @@ export default class Design {
 
     addRotateDeviceListener(callback, arg) { 
         window.addEventListener("orientationchange", (e) => { // deprecated but still works on mobile, resize event is annoying because it fires twice
-            this.rotateDeviceAlertSelector(callback, arg)
+            this.rotateDeviceAlertSelector(callback, arg);
         });
     }
 
@@ -105,8 +105,8 @@ export default class Design {
     }
 
     addBlurBackground() {
-        document.querySelector(".world-map").style.filter= "blur(3px)";
-        document.querySelector(".button").style.filter= "blur(3px)";
+        document.querySelector(".world-map").style.filter= "blur(15px)";
+        document.querySelector(".button").style.filter= "blur(15px)";
     }
 
     removeBlurBackground() {

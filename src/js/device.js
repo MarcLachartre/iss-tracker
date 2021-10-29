@@ -2,7 +2,7 @@ import MobileDetect from "mobile-detect"
 
 export default class Device {
     constructor(design) {
-        this.design = design
+        this.design = design;
     }
 
     isMobileDevice() {
@@ -14,16 +14,16 @@ export default class Device {
         return (window.screen.width < window.screen.height) ? true : false
     }
 
-    initOrientationMarker(callback, arg) {
-        (document.documentElement.clientHeight > document.documentElement.clientWidth) ? document.querySelector(".container").setAttribute("orientation", "portrait") : document.querySelector(".container").setAttribute("orientation", "landscape")
-        window.addEventListener("orientationchange", () => {
-            if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
-                document.querySelector(".container").setAttribute("orientation", "landscape")
+    initOrientationMarker() {
+        const container = document.querySelector(".container");
+        const containerAttribute = (a) => {
+            container.setAttribute("orientation", a);
+        }
 
-                
-            } else { 
-                document.querySelector(".container").setAttribute("orientation", "portrait");
-            }       
-        })
+        (document.documentElement.clientHeight > document.documentElement.clientWidth) ? containerAttribute("portrait") : containerAttribute("landscape")
+        
+        window.addEventListener("orientationchange", () => {
+            (container.getAttribute("orientation") === "portrait") ? containerAttribute("landscape") : containerAttribute("portrait");        
+        });
     }
 }
