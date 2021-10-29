@@ -104,7 +104,7 @@ export default class IssPositionLoop {
         window.addEventListener("focus", handler, true);
       }
 
-      if (timer >= 1200) { // after 2minutes, the interval stops, iss icon is hidden, no more fetch is done, and a alert box prompts the user to decide whether or not he wants to keep tracking the ISS.
+      if (timer >= 1) { // after 2minutes, the interval stops, iss icon is hidden, no more fetch is done, and a alert box prompts the user to decide whether or not he wants to keep tracking the ISS.
         clearInterval(interval);
         design.showAlertBox("astronaut", "Hey Astronaut !!!", "Houston here. Are you still with us or are you lost in space? Do you copy?", "STILL HERE", "/astronaut.png", "astronaut", this.startFetchLoop.bind(this), 0);
         design.hideIss();

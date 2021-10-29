@@ -31,12 +31,21 @@
   }
 
 .fusee {
-    width: 40%;
+    width: 37%;
 }
 
 .astronaut {
+    width: 20%;
     margin-right: 60px;
     margin-left: 20px;
+}
+
+.phone-rotation {
+    width: 37%;
+}
+
+.trounoir {
+    width: 37%;
 }
 
 .alert-box-text-container {
