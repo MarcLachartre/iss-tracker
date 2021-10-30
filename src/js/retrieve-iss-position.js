@@ -7,14 +7,6 @@ export default class RetrieveIssPosition {
     this.device = new Device();
   }
 
-  initOrientationDisplay() {
-    document.querySelector(".alert-box").querySelector(".button").addEventListener("click", () => {
-      if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
-        this.design.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation");
-      }
-    })
-  }
-
   placeIssOnMap() { // fetches coordinates, converts then in position on screen, place an iss icon on the map.
     var myInit = {method: 'GET'};
 
@@ -24,8 +16,8 @@ export default class RetrieveIssPosition {
         if (document.querySelector(".alert-box") === null) {
           this.design.showAlertBox("wormhole", "Hey Astronaut !!!", "Houston here. It seems that you are lost in a wormhole... Please check your connection and retry!", "RETRY", "/wormhole.png", "trounoir", this.startFetchLoop.bind(this), 0);  
           this.design.hideIss();
-          this.initOrientationDisplay()
-        throw(Error(response)) 
+          this.initOrientationDisplay();
+        throw(Error(response)); 
       }
     })
     .then((response) => {
@@ -59,5 +51,14 @@ export default class RetrieveIssPosition {
       const convertedCoord = centerAxis + ((coord*(maxAxis-centerAxis))/minCoord);
       return convertedCoord
     }
+  }
+
+
+  initOrientationDisplay() {
+    document.querySelector(".alert-box").querySelector(".button").addEventListener("click", () => {
+      if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
+        this.design.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation");
+      }
+    })
   }
 }
