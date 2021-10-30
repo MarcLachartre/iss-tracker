@@ -101,6 +101,7 @@ export default class Design {
     removeAlertOnclick(button, callback, arg) {
         button.addEventListener("click", () => {
             callback(arg);
+            this.removeAlertBox();
         })
     }
 
@@ -118,9 +119,14 @@ export default class Design {
         this.satellite.classList.add("spot-me");
         this.satellite.style.opacity= "1";
 
-        setTimeout(function(){ 
+        return setTimeout(function(){ 
             this.satellite.classList.remove("spot-me");
         }.bind(this), 3000);
+    }
+
+    stopSpotISS(timeoutId) {
+        clearTimeout(timeoutId);
+        this.satellite.classList.remove("spot-me");
     }
 
     hideIss() {
