@@ -7,6 +7,7 @@ export default class IssTracking extends RetrieveIssPosition {
   }
 
   init() { 
+    this.design.initMap();
     (this.device.isMobileDevice()) ? this.mobileInit() : this.computerInit();
   }
 

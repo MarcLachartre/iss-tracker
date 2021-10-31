@@ -1,9 +1,18 @@
 import Device from "./device.js"
+import Map from '../images/world-map.jpeg';
 
 export default class Design {
     constructor(device) {
         this.device = new Device();
         this.satellite = document.querySelector(".satellite");
+    }
+
+    initMap() {
+        const worldMap = new Image();
+        worldMap.src = Map;
+        worldMap.alt = "world map";
+        worldMap.classList.add("world-map");
+        return document.querySelector(".container").appendChild(worldMap);
     }
 
     showRotateDeviceAlert() {

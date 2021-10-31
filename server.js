@@ -8,9 +8,9 @@ const compiler = webpack(config);
 
 //////////////// Images load ////////////////
 
-app.get('/world-map.jpeg', (req, res) => {
-  res.sendFile(__dirname + '/src/images/world-map.jpeg')
-})
+// app.get('/world-map.jpeg', (req, res) => {
+//   res.sendFile(__dirname + '/src/images/world-map.jpeg')
+// })
 app.get('/fusee.png', (req, res) => {
   res.sendFile(__dirname + '/src/images/fusee.png')
 })
