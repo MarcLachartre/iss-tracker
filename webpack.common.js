@@ -24,7 +24,7 @@ module.exports = {
         'twitter:card': { name: 'twitter:card', content: 'summary_large_image' },
         'twitter:title': { name: 'twitter:title', content: 'ISS Tracker' },
         'twitter:description': { name: 'twitter:description', content: "Follow in real time the International Space Station's journey around the world and check out if it is currently crusing (400+ kms) above your head!" },
-        'twitter:image': { name: 'twitter:image', content: 'src/images/iss-social-media-image.jpg' }
+        'twitter:image': { name: 'twitter:image', content: '/iss-social-media-image.jpg' }
       }
     }),
   ],
