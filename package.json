@@ -19,7 +19,6 @@
     "@fortawesome/fontawesome-free": "^5.15.4",
     "css-loader": "^6.4.0",
     "express": "^4.17.1",
-    "favicons": "^6.2.2",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.2",
     "lodash": "^4.17.21",
@@ -27,14 +26,12 @@
     "style-loader": "^3.3.0",
     "webpack": "^5.58.2",
     "webpack-dev-middleware": "^5.2.1",
-    "webpack-merge": "^5.8.0",
-    "favicons-webpack-plugin": "^5.0.2"
+    "webpack-merge": "^5.8.0"
   },
   "devDependencies": {
     "css-loader": "^6.4.0",
     "css-minimizer-webpack-plugin": "^3.1.1",
     "express": "^4.17.1",
-    "favicons-webpack-plugin": "^5.0.2",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.2",
     "mini-css-extract-plugin": "^2.4.2",
