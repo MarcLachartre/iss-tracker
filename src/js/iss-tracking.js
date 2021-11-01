@@ -27,7 +27,7 @@ export default class IssTracking extends RetrieveIssPosition {
   }
 
   mobileInit() {
-
+    console.log("cul")
     const alertBoxIsPresent = () => {return document.querySelector(".alert-box") !== null};
     this.device.initOrientationMarker();
 
