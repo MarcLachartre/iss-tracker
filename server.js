@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 const app = express();
-const config = require('./webpack.dev.js');
+const config = require('./webpack.prod.js');
 const compiler = webpack(config);
 
 //////////////// Images load ////////////////
@@ -24,21 +24,6 @@ app.get('/iss-social-media-image.jpg', (req, res) => {
   res.sendFile(__dirname + '/src/images/iss-social-media-image.jpg')
 })
 
-app.get('/favicon-iss-16x16.png', (req, res) => {
-  res.sendFile(__dirname + '/src/images/favicon-iss-16x16.png')
-})
-app.get('/favicon-iss-32x32.png', (req, res) => {
-  res.sendFile(__dirname + '/src/images/favicon-iss-32x32.png')
-})
-app.get('/favicon-iss-android-chrome-192x192.png', (req, res) => {
-  res.sendFile(__dirname + '/src/images/iss-favicon-android-chrome-192x192.png')
-})
-app.get('/favicon-iss-android-chrome-512x512.png', (req, res) => {
-  res.sendFile(__dirname + '/src/images/favicon-iss-android-chrome-512x512.png')
-})
-app.get('/favicon-iss-apple-touch-icon.png', (req, res) => {
-  res.sendFile(__dirname + '/src/images/favicon-iss-apple-touch-icon.png')
-})
 /////////////////////////////////////////////
 
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
