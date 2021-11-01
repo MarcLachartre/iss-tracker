@@ -20,7 +20,7 @@ module.exports = {
         'og:description': { property: 'og:description', content: "Follow in real time the International Space Station's journey around the world and check out if it is currently crusing (400+ kms) above your head!" },
         'og:type': { property: 'og:type', content: 'website' },
         'og:url': { property: 'og:url', content: 'https://www.isstracker.live' },
-        'og:image': { property: 'og:image', content: 'iss-social-media-image.jpg' },
+        'og:image': { property: 'og:image', content: '/iss-social-media-image.jpg' },
         'twitter:card': { name: 'twitter:card', content: 'summary_large_image' },
         'twitter:title': { name: 'twitter:title', content: 'ISS Tracker' },
         'twitter:description': { name: 'twitter:description', content: "Follow in real time the International Space Station's journey around the world and check out if it is currently crusing (400+ kms) above your head!" },
