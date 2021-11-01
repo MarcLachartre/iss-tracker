@@ -34,7 +34,6 @@ export default class IssTracking extends RetrieveIssPosition {
     this.initOrientationDisplay();
     
     window.addEventListener("orientationchange", () => {
-      document.querySelector(".alert-box").style.backgroundColor = "red"
       if (alertBoxIsPresent() !== false && document.querySelector("#rotate") === null) {
         return
 
