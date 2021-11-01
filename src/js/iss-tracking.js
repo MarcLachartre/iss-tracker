@@ -8,13 +8,14 @@ export default class IssTracking extends RetrieveIssPosition {
 
   init() { 
     this.design.initMap();
+
     (this.device.isMobileDevice()) ? this.mobileInit() : this.computerInit();
   }
 
   computerInit() {
     const alertBoxIsPresent = () => {return document.querySelector(".alert-box") !== null};
     this.design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Press your space bar or click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
-    document.querySelector(".alert-box").style.backgroundColor = "red";
+
     this.events.forEach(event => {      
       event[0].addEventListener(event[1], (e) => {    
         const isValidInput = () => { return (e.code === "Space" || e.code === "Enter" || e.type === "click")};
