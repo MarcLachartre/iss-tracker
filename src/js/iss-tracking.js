@@ -32,14 +32,15 @@ export default class IssTracking extends RetrieveIssPosition {
     this.design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
 
     this.initOrientationDisplay();
-    
+    console.log(window.orientation)
     window.addEventListener("orientationchange", () => {
       if (alertBoxIsPresent() !== false && document.querySelector("#rotate") === null) {
-        return
+        // console.log(window.orientation)
+        // return
 
       } else if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
         this.design.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation");
-      
+        // console.log(window.orientation)
       } else {
         this.startFetchLoop(0);
       }    
@@ -74,13 +75,13 @@ export default class IssTracking extends RetrieveIssPosition {
           document.querySelector(".surface-map").querySelector(".button").removeEventListener("click", handler, true);
           window.removeEventListener("keyup", handler, true);
           window.removeEventListener("focus", handler, true);
-          window.removeEventListener("orientationchange", handler, true);
+          // window.removeEventListener("orientationchange", handler, true);
         };
     
         document.querySelector(".surface-map").querySelector(".button").addEventListener("click", handler, true); 
         window.addEventListener("keyup", handler, true);
         window.addEventListener("focus", handler, true);
-        window.addEventListener("orientationchange", handler, true);
+        // window.addEventListener("orientationchange", handler, true);
       } else if (timer >= 1200) { // after 2minutes, the interval stops, iss icon is hidden, no more fetch is done, and a alert box prompts the user to decide whether or not he wants to keep tracking the ISS.
         this.end(interval);
       };
