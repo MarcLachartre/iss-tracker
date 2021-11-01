@@ -32,7 +32,7 @@ export default class IssTracking extends RetrieveIssPosition {
     this.device.initOrientationMarker();
 
     this.design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
-
+    document.querySelector(".alert-box").style.backgroundColor = "red"
     this.initOrientationDisplay();
     console.log(window.orientation)
     window.addEventListener("orientationchange", () => {
