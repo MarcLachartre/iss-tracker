@@ -26,11 +26,12 @@ export default class IssTracking extends RetrieveIssPosition {
   }
 
   mobileInit() {
+
     const alertBoxIsPresent = () => {return document.querySelector(".alert-box") !== null};
     this.device.initOrientationMarker();
 
     this.design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
-
+    document.querySelector(".alert-box").style.backgroundColor = "red";
     this.initOrientationDisplay();
     console.log(window.orientation)
     window.addEventListener("orientationchange", () => {
@@ -75,13 +76,13 @@ export default class IssTracking extends RetrieveIssPosition {
           document.querySelector(".surface-map").querySelector(".button").removeEventListener("click", handler, true);
           window.removeEventListener("keyup", handler, true);
           window.removeEventListener("focus", handler, true);
-          // window.removeEventListener("orientationchange", handler, true);
+          window.removeEventListener("orientationchange", handler, true);
         };
     
         document.querySelector(".surface-map").querySelector(".button").addEventListener("click", handler, true); 
         window.addEventListener("keyup", handler, true);
         window.addEventListener("focus", handler, true);
-        // window.addEventListener("orientationchange", handler, true);
+        window.addEventListener("orientationchange", handler, true);
       } else if (timer >= 1200) { // after 2minutes, the interval stops, iss icon is hidden, no more fetch is done, and a alert box prompts the user to decide whether or not he wants to keep tracking the ISS.
         this.end(interval);
       };
