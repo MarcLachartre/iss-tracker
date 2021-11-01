@@ -23,9 +23,9 @@ app.get('/wormhole.png', (req, res) => {
 app.get('/phone-rotation.png', (req, res) => {
   res.sendFile(__dirname + '/src/images/phone-rotation.png')
 })
-app.get('/iss-social-media-image.jpg', (req, res) => {
-  res.sendFile(__dirname + '/src/images/iss-social-media-image.jpg')
-})
+// app.get('/iss-social-media-image.jpg', (req, res) => {
+//   res.sendFile(__dirname + '/src/images/iss-social-media-image.jpg')
+// })
 
 app.get('/favicon-iss-16x16.png', (req, res) => {
   res.sendFile(__dirname + '/src/images/favicon-iss-16x16.png')
