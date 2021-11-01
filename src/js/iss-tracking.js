@@ -14,7 +14,7 @@ export default class IssTracking extends RetrieveIssPosition {
   computerInit() {
     const alertBoxIsPresent = () => {return document.querySelector(".alert-box") !== null};
     this.design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Press your space bar or click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
-    
+    document.querySelector(".alert-box").style.backgroundColor = "red";
     this.events.forEach(event => {      
       event[0].addEventListener(event[1], (e) => {    
         const isValidInput = () => { return (e.code === "Space" || e.code === "Enter" || e.type === "click")};
@@ -31,7 +31,7 @@ export default class IssTracking extends RetrieveIssPosition {
     this.device.initOrientationMarker();
 
     this.design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
-    document.querySelector(".alert-box").style.backgroundColor = "red";
+
     this.initOrientationDisplay();
     console.log(window.orientation)
     window.addEventListener("orientationchange", () => {
