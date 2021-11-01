@@ -15,26 +15,6 @@ export default class Design {
         return document.querySelector(".container").appendChild(worldMap);
     }
 
-    showRotateDeviceAlert() {
-        this.hideIss();
-        this.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation");
-    };
-
-    addRotateDeviceListener(callback, arg) { 
-        window.addEventListener("orientationchange", (e) => { // deprecated but still works on mobile, resize event is annoying because it fires twice
-            this.rotateDeviceAlertSelector(callback, arg);
-        });
-    }
-
-    rotateDeviceAlertSelector(callback, arg) {
-        if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
-            this.removeAlertBox();
-            this.showIss();
-            callback(arg);
-        } else {
-            this.showRotateDeviceAlert();
-        }
-    }
 
     showAlertBox(id, title, text, buttonText, imgURL, imgClass, callback, arg) {
         if (document.querySelector(".background") === null) {
@@ -86,13 +66,6 @@ export default class Design {
         }
     }
 
-    removeAlertBox() {
-        if (document.querySelector(".background") !== null) {
-            document.querySelector(".background").remove();
-            this.removeBlurBackground();
-        }
-    }
-
     addButton(text, callback, arg) {
         const button = document.createElement("div");
         const buttonText = document.createElement("div");
@@ -114,6 +87,13 @@ export default class Design {
         })
     }
 
+    removeAlertBox() {
+        if (document.querySelector(".background") !== null) {
+            document.querySelector(".background").remove();
+            this.removeBlurBackground();
+        }
+    }
+
     addBlurBackground() {
         document.querySelector(".world-map").style.filter= "blur(15px)";
         document.querySelector(".button").style.filter= "blur(15px)";
@@ -124,7 +104,29 @@ export default class Design {
         document.querySelector(".button").style.filter= "blur(0px)";
     }
     
-    spotISS() { //this function adds a little circle around the station to make it easily visible and adds the color to the icon
+
+    showRotateDeviceAlert() {
+        this.hideIss();
+        this.showAlertBox("rotate", "Hey Space Ranger !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation");
+    };
+
+    addRotateDeviceListener(callback, arg) { 
+        window.addEventListener("orientationchange", (e) => { // deprecated but still works on mobile, resize event is annoying because it fires twice
+            this.rotateDeviceAlertSelector(callback, arg);
+        });
+    }
+
+    rotateDeviceAlertSelector(callback, arg) {
+        if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
+            this.removeAlertBox();
+            this.showIss();
+            callback(arg);
+        } else {
+            this.showRotateDeviceAlert();
+        }
+    }
+
+    spotISS() {
         this.satellite.classList.add("spot-me");
         this.satellite.style.opacity= "1";
 

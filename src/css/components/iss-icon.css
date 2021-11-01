@@ -1,15 +1,14 @@
 .satellite {
     z-index: 1;
-    display:inline-block;
     position: absolute;
     line-height: 2vh;
     color:white;
-    width: 10vw;
+    width: 3vw;
     height: 2vh;
     text-align: center;
     font-size: 2vh;
     top: 59.9%;
-    left: 45%;
+    left: 48.5%;
     opacity: 0;
 }
 

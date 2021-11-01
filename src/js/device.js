@@ -10,14 +10,10 @@ export default class Device {
         return (md.tablet() !== null || md.mobile() !== null) ? true : false
     }
 
-    isPortrait() {
-        return (window.screen.width < window.screen.height) ? true : false
-    }
-
-    initOrientationMarker() {
+    initOrientationMarker() { //Necessary on load on mobile devices in order to know the orientation of the device and adapt display. On mobile rotation, it give a orientation attribute to the container that is either landscape or portrait.
         const container = document.querySelector(".container");
-        const containerAttribute = (a) => {
-            container.setAttribute("orientation", a);
+        const containerAttribute = (attr) => {
+            container.setAttribute("orientation", attr);
         }
 
         (document.documentElement.clientHeight > document.documentElement.clientWidth) ? containerAttribute("portrait") : containerAttribute("landscape")

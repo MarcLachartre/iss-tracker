@@ -3,14 +3,11 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 const app = express();
-const config = require('./webpack.prod.js');
+const config = require('./webpack.dev.js');
 const compiler = webpack(config);
 
 //////////////// Images load ////////////////
 
-// app.get('/world-map.jpeg', (req, res) => {
-//   res.sendFile(__dirname + '/src/images/world-map.jpeg')
-// })
 app.get('/fusee.png', (req, res) => {
   res.sendFile(__dirname + '/src/images/fusee.png')
 })

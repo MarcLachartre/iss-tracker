@@ -6,7 +6,6 @@ module.exports = {
     index: './src/js/index.js',
   },
 
-
   plugins: [
     new HtmlWebpackPlugin({
       title: 'ISS Tracker',
@@ -14,16 +13,16 @@ module.exports = {
       favicon: "src/images/space-station-icon.png",
       meta: {
         'title': {name: 'title', content: 'ISS Tracker'},
-        'description': { name: 'description', content: "Follow in real time the International Space Station's journey around the world and check out if it is currently crusing (400+ kms) above your head!"},
+        'description': { name: 'description', content: "Follow the International Space Station's journey in real time around the world and see if it is currently crusing (400+ kms) above your head!"},
         'keyword': { name: 'keywords', content: 'ISS International Space Station Live Tracking' },
         'og:title': { property: 'og:title', content: 'ISS Tracker' },
-        'og:description': { property: 'og:description', content: "Follow in real time the International Space Station's journey around the world and check out if it is currently crusing (400+ kms) above your head!" },
+        'og:description': { property: 'og:description', content: "Follow the International Space Station's journey in real time around the world and see if it is currently crusing (400+ kms) above your head!" },
         'og:type': { property: 'og:type', content: 'website' },
         'og:url': { property: 'og:url', content: 'https://www.isstracker.live' },
         'og:image': { property: 'og:image', content: '/iss-social-media-image.jpg' },
         'twitter:card': { name: 'twitter:card', content: 'summary_large_image' },
         'twitter:title': { name: 'twitter:title', content: 'ISS Tracker' },
-        'twitter:description': { name: 'twitter:description', content: "Follow in real time the International Space Station's journey around the world and check out if it is currently crusing (400+ kms) above your head!" },
+        'twitter:description': { name: 'twitter:description', content: "Follow the International Space Station's journey in real time around the world and see if it is currently crusing (400+ kms) above your head!" },
         'twitter:image': { name: 'twitter:image', content: '/iss-social-media-image.jpg' }
       }
     }),
@@ -45,7 +44,6 @@ module.exports = {
       },
     ],
   },
-
 
   output: {
     filename: '[name].bundle.js',
