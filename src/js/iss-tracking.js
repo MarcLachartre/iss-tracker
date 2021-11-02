@@ -3,7 +3,7 @@ import RetrieveIssPosition from "./retrieve-iss-position.js";
 export default class IssTracking extends RetrieveIssPosition {
   constructor() {
     super();
-    this.events = [[document, "keyup"], [document.querySelector(".surface-map").querySelector(".button"), "click"], [window, "focus"]]; //Events on which the app sarts tracking the iss.
+    this.events = [[document, "keyup"], [document.querySelector(".surface-map").querySelector(".button"), "click"], [window, "focus"]]; //Events on which the app starts tracking the iss.
   }
 
   init() { 
@@ -26,7 +26,6 @@ export default class IssTracking extends RetrieveIssPosition {
   }
 
   mobileInit() {
-
     const alertBoxIsPresent = () => {return document.querySelector(".alert-box") !== null};
     this.device.initOrientationMarker();
     this.design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
