@@ -8,14 +8,12 @@ export default class IssTracking extends RetrieveIssPosition {
 
   init() { 
     this.design.initMap();
-
     (this.device.isMobileDevice()) ? this.mobileInit() : this.computerInit();
   }
 
   computerInit() {
     const alertBoxIsPresent = () => {return document.querySelector(".alert-box") !== null};
-    // this.design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Press your space bar or click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
-    this.design.showAlertBox("fusee", `${navigator.userAgent}`, 'Press your space bar or click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
+    this.design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Press your space bar or click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
 
     this.events.forEach(event => {      
       event[0].addEventListener(event[1], (e) => {    
@@ -28,22 +26,19 @@ export default class IssTracking extends RetrieveIssPosition {
   }
 
   mobileInit() {
-    console.log("cul")
+
     const alertBoxIsPresent = () => {return document.querySelector(".alert-box") !== null};
     this.device.initOrientationMarker();
-
     this.design.showAlertBox("fusee", "Hello Space Enthusiast !!!", 'Click the "LOCATE" button to see where the International Space Station currently is!', "GOT IT", "/fusee.png", "fusee", this.startFetchLoop.bind(this), 0);
-    document.querySelector(".alert-box").style.backgroundColor = "red"
     this.initOrientationDisplay();
-    console.log(window.orientation)
+    
     window.addEventListener("orientationchange", () => {
       if (alertBoxIsPresent() !== false && document.querySelector("#rotate") === null) {
-        // console.log(window.orientation)
-        // return
+        return
 
       } else if (document.querySelector(".container").getAttribute("orientation") === "portrait") {
         this.design.showAlertBox("rotate", "Hey Astronaut !!!", "Please rotate your device, this application can only function in landscape mode!", null, "/phone-rotation.png", "phone-rotation");
-        // console.log(window.orientation)
+
       } else {
         this.startFetchLoop(0);
       }    
